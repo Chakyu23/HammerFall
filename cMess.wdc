@@ -1,0 +1,132 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cMess
+ major_version : 31
+ minor_version : 4
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a4e2fc600ee99c4
+ internal_properties : IQAAACAAAABKsxthc0YewCHsxvkcfERUUToabWJ9Bnj6bStOP0zWiFsuqlQ1rg==
+ code_elements :
+  internal_properties : IQAAACAAAAAAoiwghAeMad8SfRszJdW+oDtaoWHYuBS7AgBzZhVJnIsW3k6lH3I3X0+Z45lrllPiAoaTvrdsxNsPY4mPta9JhY937HkN0IW+sFildm4aAJvUCOg/vKoI2+HR4vD82Xg9sqTq1HqClu9FicPWxmJUFDWKVG0vm3Yi6agOSMHCE9WuYezddCrod//abLP/jE3sDORvIx1kM9vnIjRhQS6BsH7qP1BjnVMI8KC6nSykKfc7kryvMmVwcOnIsKED2u6JS+UM2wwmNy/wFNqhfSl6ytLWNkjD3aaQEFH3p6VNbxyqcp/g/JYu/BZWz6jSBl7jymGCwmYDBg==
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cMess est une Classe
+      
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1895505020635290052
+     type_code : 27
+     code : |1+
+      procédure Constructeur()
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1895505020635355588
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+      
+     type : 655360
+   -
+     name : PushValide
+     internal_properties : IQAAACAAAAAY84vonTPeNAiJhhJVAVEYGEZxaPwRYdCbHaZW18Z+NND4v95NaWhZkmL9nn4/y9EVqklxWbGE35G24o2d/1tq0xa3k8GRlffOLsTE/19TOk2QmZdQ48IAE/2vb7PvVgFCQvs61hunsu9AJS1Wjzc9X66QGLLYtDIuNkx+1pP9w4Fm+0H3lQjLkdR0hOJQaL6Qgl6Fh1RQqcYrb2SC
+     procedure_id : 1895505102239819561
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param sMessage (chaîne ANSI)  <indiquez ici le rôle de sMessage>
+      //!
+      //!
+      
+      procédure publique globale PushValide(sMessage est une chaîne)
+      
+      ToastAffiche(sMessage, toastCourt, cvBas, chCentre, VertPastel)
+     type : 458752
+   -
+     name : NewNotif
+     internal_properties : IQAAACAAAAAu2eGCQy000qZXWHgzf2f2VgQvKrrLPz5pGzh83rxI/OcUK371MdAFShYdlg7TU3lFXqVpuQGkg7FCogWN82MC6/LTSzEp5SNmmvzkf6vJoGsGO/3yZYBa6YPtdf3p3PdYGJUQ8AWFxM3uyzOI2X2LTcwKNnRSYtRc5PpUkUZQiieMkTsJuzL1z5KyRqxmUqT2aLQ/2To6k/wRRU60
+     procedure_id : 1895505325578170015
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param sMessage (chaîne ANSI)  <indiquez ici le rôle de sMessage>
+      //!
+      //!
+      
+      procédure PUBLIQUE GLOBALE NewNotif(sMessage est une chaîne)
+      
+      // Future gestion de notification
+     type : 458752
+   -
+     name : PushError
+     internal_properties : IQAAACAAAACy/eXxMUqTnjDPEfaWVBTTX0NAcgjiPRCvtLU+xZs1a/s7heJPh8LdMx2RAmRczE0jCzP92c6GQ+T2z2d8acV+ynGSV1GuCa9yAE5aKzlP5HvIF6AE06089RVZmLcqM8gS2tI13grlses8s0UEk8c4Eb18QeOBgEEcgk3lUQmwmfIFSAVg25NwGg==
+     procedure_id : 1895505450132250646
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      procédure PUBLIQUE GLOBALE PushError(sMessage est une chaîne)
+      
+      ToastAffiche(sMessage, toastCourt, cvBas, chCentre, RougePastel)
+     type : 458752
+   -
+     name : PushCriticalError
+     internal_properties : IQAAACAAAAAY84vonTPeNAiJhhJVAVEYGEZxaPwRYdCbHaZW18Z+NND4v95NaWhZkmL9nn4/y9EVqklxWbGE35G24o2d/1tq0xa3k8GRlffOLsTE/19TOk2QmZdQ48IAE/2vb7PvVgFCQvs61hunsu9AJS1Wjzc9X66QGLLYtDIuNkx+1pP9w4Fm+0H3lQjLkdR0hOJQaL6Qgl6Fh1RQqcYrb2SC
+     procedure_id : 1895505531736714119
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param sMessage (chaîne ANSI)  nCodeErr (entier)  (chaîne ANSI)  <indiquez ici le rôle de sMessage>
+      //!
+      //!
+      
+      procédure PUBLIQUE GLOBALE PushCriticalError(sMessage est une chaine)
+      
+      Erreur(sMessage)
+     type : 458752
+   -
+     name : PushInfo
+     internal_properties : IQAAACAAAAAY84vonTPeNAiJhhJVAVEYGEZxaPwRYdCbHaZW18Z+NND4v95NaWhZkmL9nn4/y9EVqklxWbGE35G24o2d/1tq0xa3k8GRlffOLsTE/19TOk2QmZdQ48IAE/2vb7PvVgFCQvs61hunsu9AJS1Wjzc9X66QGLLYtDIuNkx+1pP9w4Fm+0H3lQjLkdR0hOJQaL6Qgl6Fh1RQqcYrb2SC
+     procedure_id : 1895507292678958374
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param sMessage (chaîne ANSI)  <indiquez ici le rôle de sMessage>
+      //!
+      //!
+      
+      procédure PUBLIQUE GLOBALE PushInfo(sMessage est une chaîne)
+      
+      ToastAffiche(sMessage, toastCourt, cvBas, chCentre, bleuPastel)
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : IQAAACAAAAAFPuXd7fBX1/SiDTB6sHrfMZ5LqScVEUxNStUfcDtxIwFPEz+iD9Gkb2T8
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x1a4e2fc100eb863c
+  internal_properties : IQAAACAAAABDeCMfozZFpzgqxeIXhYeFdAaPGk00grp/EBDAJmpRaTMRIb1iTRNmLaK6
+custom_note :
+ internal_properties : IQAAACAAAADHMJbkzjYofeIDmEvswFy+SzkIk5HN+Jrst5U0+JApjeCrL9+4Iw==

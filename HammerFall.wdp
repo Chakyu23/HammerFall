@@ -28,6 +28,30 @@ project :
   identifier : 0x4a1fd4d10009ff50
   elements :
    -
+     name : cMess
+     identifier : 0x4a4e2fc6015899d4
+     internal_properties : IQAAACAAAAButio6GE0jIw8Kti1W1j4o6GozSdR5hJto9ZLAeQXCFbjQN+eU6otnWr5Ofx7n5B+8aCBkaPDtZ6mD
+     physical_name : .\cMess.wdc
+     type : 4
+   -
+     name : FI_Cnx
+     identifier : 0x4a4e299e00928e01
+     internal_properties : IQAAACAAAAB+hjoqaL1T0186hl0mJi4yYHOJ4PnPNkUoI9zgSbzVig2vyJZ9uOxaFOxebw4XNO/sGFC0GAD9d7mT
+     physical_name : .\FI_Cnx.wdw
+     type : 8
+   -
+     name : FI_Caracteristiques
+     identifier : 0x4a4e29790079fd89
+     internal_properties : IQAAACAAAADbqxdcOYIrFBh4WxrsXaW3p402zsK51SLQdi7O0UXjpBboYivXNiTx/H5vnfeueb2cErm128cA
+     physical_name : .\FI_Caracteristiques.wdw
+     type : 8
+   -
+     name : FI_Global
+     identifier : 0x4a4e29280062c3d1
+     internal_properties : IQAAACAAAAC82Hj0qv+lqYmMOK/oSHiZdKxlOe3Thm021yNIuWTJxSisPxdYDYQKGVPIxaRhYpk24qrq1kI7NXvV
+     physical_name : .\FI_Global.wdw
+     type : 8
+   -
      name : cCaracteristiques
      identifier : 0x4a4e1c20003dd954
      internal_properties : IQAAACAAAADuiprUO+Yr3OtF6zDHHj9F0PtmfHeIQL5U1gxVRA8dNl51hJw3hp1uNr01r8KPYa5HeMZyQHxn5g==
