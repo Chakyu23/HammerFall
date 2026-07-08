@@ -50,7 +50,7 @@ class :
       //!
       //!
       
-      procédure publique globale PushValide(sMessage est une chaîne)
+      procédure publique globale PushValide(LOCAL sMessage est une chaîne)
       
       ToastAffiche(sMessage, toastCourt, cvBas, chCentre, VertPastel)
      type : 458752
@@ -67,7 +67,7 @@ class :
       //!
       //!
       
-      procédure PUBLIQUE GLOBALE NewNotif(sMessage est une chaîne)
+      procédure PUBLIQUE GLOBALE NewNotif(LOCAL sMessage est une chaîne <utile>)
       
       // Future gestion de notification
      type : 458752
@@ -81,7 +81,7 @@ class :
       //! @brief <indiquez ici ce que fait la procédure>
       //!
       //!
-      procédure PUBLIQUE GLOBALE PushError(sMessage est une chaîne)
+      procédure PUBLIQUE GLOBALE PushError(LOCAL sMessage est une chaîne)
       
       ToastAffiche(sMessage, toastCourt, cvBas, chCentre, RougePastel)
      type : 458752
@@ -98,7 +98,7 @@ class :
       //!
       //!
       
-      procédure PUBLIQUE GLOBALE PushCriticalError(sMessage est une chaine)
+      procédure PUBLIQUE GLOBALE PushCriticalError(LOCAL sMessage est une chaine)
       
       Erreur(sMessage)
      type : 458752
@@ -115,7 +115,7 @@ class :
       //!
       //!
       
-      procédure PUBLIQUE GLOBALE PushInfo(sMessage est une chaîne)
+      procédure PUBLIQUE GLOBALE PushInfo(LOCAL sMessage est une chaîne)
       
       ToastAffiche(sMessage, toastCourt, cvBas, chCentre, bleuPastel)
      type : 458752
