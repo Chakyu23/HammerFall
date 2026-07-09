@@ -1,0 +1,99 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cApp
+ major_version : 31
+ minor_version : 4
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a4e368303d1ee20
+ internal_properties : IQAAACAAAABKsxthc0YewCHsxvkcfERUUToabWJ9Bnj6bStOP0zWiFsuqlQ1rg==
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      
+      cApp est une Classe
+      privé
+      	m_oUser		est un cUser
+      	m_oRouter	est un cRouter
+      
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1895512429502328352
+     type_code : 27
+     code : |1+
+      procédure Constructeur()
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1895512429502393888
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+      
+     type : 655360
+   -
+     name : Connect
+     procedure_id : 1895523119791466508
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param sLogin (chaîne ANSI)  s  <indiquez ici le rôle de s>
+      //! @param sMdp (mot de passe sécurisé)  <indiquez ici le rôle de sMdp>
+      //!
+      //!
+      
+      procédure Connect(sLogin est une chaîne, sMdp est un MotDePasseSécurisé)
+      VariableRAZ(:m_oUser)
+     type : 458752
+   -
+     name : Disconnect
+     procedure_id : 1895523149856244080
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      procédure Disconnect()
+      
+      VariableRAZ(:m_oUser)
+      FEN_HammerFall._Menu..Etat = Grisé
+      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Cnx)
+     type : 458752
+   -
+     name : GetUserToken
+     procedure_id : 1895526383999680513
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @return (AuthToken)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure GetUserToken()
+      
+      renvoyer :m_oUser.Token
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : IQAAACAAAAAFPuXd7fBX1/SiDTB6sHrfMZ5LqScVEUxNStUfcDtxIwFPEz+iD9Gkb2T8
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x1a4e368103cee5d3
+  internal_properties : IQAAACAAAABDeCMfozZFpzgqxeIXhYeFdAaPGk00grp/EBDAJmpRaTMRIb1iTRNmLaK6
+custom_note :
+ internal_properties : IQAAACAAAADHMJbkzjYofeIDmEvswFy+SzkIk5HN+Jrst5U0+JApjeCrL9+4Iw==

@@ -1,0 +1,188 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cRouter
+ major_version : 31
+ minor_version : 4
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a4e373a0475b83c
+ internal_properties : IQAAACAAAABKsxthc0YewCHsxvkcfERUUToabWJ9Bnj6bStOP0zWiFsuqlQ1rg==
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      eRoute est une énumération
+      
+      fin
+      
+      cRouter est une Classe
+      
+      PRIVÉE
+      	CONSTANTE
+      		API_URL		= ""
+      		PARAM_URL	= "%P_"
+      
+      	fin
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1895513215492077628
+     type_code : 27
+     code : |1-
+      procédure Constructeur()
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1895513215492143164
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+      
+     type : 655360
+   -
+     name : Get
+     procedure_id : 1895513284211701217
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param eRoute (cRouter.eRoute)  <indiquez ici le rôle de eRoute>
+      //! @param taParam (tableau associatif (chaîne ANSI))  )  )  )  )  )  )  )  tabParam (tableau associatif (chaîne ANSI))  )  )  )  <indiquez ici le rôle de tabParam>
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure Get(eRoute est une eRoute, taParam est un tableau associatif de chaine)
+      sURL			est une chaîne
+      RequestGet		est une httpRequête
+      ReponseGet		est un httpRéponse
+      DataJSON		est un JSON
+      
+      sURL = ::API_URL + "/" + eRoute.Valeur
+      pour TOUT sParam, sKey de taParam
+      	si pas Contient(sURL, ::PARAM_URL + sKey) alors
+      		RequestGet.Entête[sKey] = sParam
+      	Sinon
+      		sURL = Remplace(sURL, ::PARAM_URL + sKey, sParam)
+      	FIN
+      FIN
+      
+      RequestGet.url			= sURL
+      RequestGet.AuthToken	= vg_oApp.GetUserToken()
+      
+      ReponseGet				= HTTPEnvoie(RequestGet)
+      
+      SI ErreurDétectée ALORS
+      	cMess.PushCriticalError(ErreurInfo(errComplet))
+      	renvoyer faux
+      SINON
+      	si :priv_RetourHttp(ReponseGet) ALORS
+      		DataJSON..FormatJSON = ReponseGet.Contenu
+      		renvoyer DataJSON
+      	FIN
+      FIN
+      
+      renvoyer faux
+     type : 458752
+   -
+     name : UserConnect
+     procedure_id : 1895518073156139119
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param oUser (cUser)  <indiquez ici le rôle de oUser>
+      //! @param sMdp (mot de passe sécurisé)  <indiquez ici le rôle de sMdp>
+      //!
+      //!
+      
+      procédure UserConnect(oUser est un cUser, sMdp est un MotDePasseSécurisé)
+      
+     type : 458752
+   -
+     name : Post
+     procedure_id : 1895518850550906047
+     type_code : 12
+     code : |1+
+      procédure Post(eRoute est une eRoute, taParam est un tableau associatif de chaîne, DataJSON	est un JSON)
+      sURL			est une chaîne
+      RequestPost		est une httpRequête
+      ReponsePost		est un httpRéponse
+      
+      sURL = ::API_URL + "/" + eRoute.Valeur
+      POUR TOUT sParam, sKey de taParam
+      	SI PAS Contient(sURL, ::PARAM_URL + sKey) ALORS
+      		RequestPost.Entête[sKey] = sParam
+      	SINON
+      		sURL = Remplace(sURL, ::PARAM_URL + sKey, sParam)
+      	FIN
+      FIN
+      
+      RequestPost.URL			= sURL
+      RequestPost.AuthToken	= vg_oApp.GetUserToken()
+      RequestPost.Contenu 	= DataJSON..FormatJSON
+      
+      ReponsePost				= HTTPEnvoie(RequestPost)
+      
+      SI ErreurDétectée ALORS
+      	cMess.PushCriticalError(ErreurInfo(errComplet))
+      	RENVOYER Faux
+      SINON
+      	SI :priv_RetourHttp(ReponsePost) ALORS
+      		DataJSON..FormatJSON = ReponsePost.Contenu
+      		RENVOYER DataJSON
+      	FIN
+      FIN
+      
+      RENVOYER Faux
+      
+     type : 458752
+   -
+     name : priv_RetourHttp
+     procedure_id : 1895519731024846450
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param Reponse (httpRéponse)  <indiquez ici le rôle de Reponse>
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure privée priv_RetourHttp(Reponse est un httpRéponse)
+      DataJSON est un JSON
+      
+      DataJSON..FormatJSON = Reponse.Contenu
+      selon Reponse.CodeEtat
+      	CAS 200
+      		cMess.PushValide(DataJSON.Mess)
+      		renvoyer vrai
+      
+      	AUTRE CAS
+      		cMess.PushError(DataJSON.Mess)
+      FIN
+      
+      renvoyer faux
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : IQAAACAAAAAFPuXd7fBX1/SiDTB6sHrfMZ5LqScVEUxNStUfcDtxIwFPEz+iD9Gkb2T8
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x1a4e37340472a1d6
+  internal_properties : IQAAACAAAABDeCMfozZFpzgqxeIXhYeFdAaPGk00grp/EBDAJmpRaTMRIb1iTRNmLaK6
+custom_note :
+ internal_properties : IQAAACAAAADHMJbkzjYofeIDmEvswFy+SzkIk5HN+Jrst5U0+JApjeCrL9+4Iw==

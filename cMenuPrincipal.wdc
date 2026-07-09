@@ -1,0 +1,90 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cMenuPrincipal
+ major_version : 31
+ minor_version : 4
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a4e3374020afc53
+ internal_properties : IQAAACAAAABKsxthc0YewCHsxvkcfERUUToabWJ9Bnj6bStOP0zWiFsuqlQ1rg==
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      eOptions est une énumération
+      	eGlobal
+      	eCaracteristique
+      fin
+      
+      
+      cMenuPrincipal est une Classe
+      privé
+      	m_eOptionActive	est une eOptions
+      
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1895509066513120339
+     type_code : 27
+     code : |1+
+      procédure Constructeur()
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1895509066513185875
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+      
+     type : 655360
+   -
+     name : SelectMenu
+     procedure_id : 1895509066513251411
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param eOption (cMenu.eOptions)  sNomOption (chaîne ANSI)  Nom logique de l'option clic
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure SelectMenu(eOption est une eOptions)
+      
+      si eOption = :m_eOptionActive ALORS renvoyer Faux
+      
+      selon eOption
+      	// Global
+      	CAS eGlobal
+      
+      	// SousMenu
+      	CAS eCaracteristique
+      		ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Caracteristiques) 
+      
+      
+      FIN
+      
+      renvoyer vrai
+      
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : IQAAACAAAAAFPuXd7fBX1/SiDTB6sHrfMZ5LqScVEUxNStUfcDtxIwFPEz+iD9Gkb2T8
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x1a4e1c07000c7b27
+  internal_properties : IQAAACAAAABDeCMfozZFpzgqxeIXhYeFdAaPGk00grp/EBDAJmpRaTMRIb1iTRNmLaK6
+custom_note :
+ internal_properties : IQAAACAAAADHMJbkzjYofeIDmEvswFy+SzkIk5HN+Jrst5U0+JApjeCrL9+4Iw==

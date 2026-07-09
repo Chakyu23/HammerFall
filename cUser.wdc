@@ -1,0 +1,68 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cUser
+ major_version : 31
+ minor_version : 4
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a4e36e104125b7b
+ internal_properties : IQAAACAAAABKsxthc0YewCHsxvkcfERUUToabWJ9Bnj6bStOP0zWiFsuqlQ1rg==
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      
+      cUser est une Classe
+      
+      privé
+      
+      	m_sUID		est une chaîne
+      	m_sLogin	est une chaîne
+      	m_Token		est un AuthToken
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1895512833233476475
+     type_code : 27
+     code : |1+
+      procédure Constructeur()
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1895512833233542011
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+      
+     type : 655360
+  properties :
+   -
+     name : Token
+     identifier : 0x1a4e38cf05bee635
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique Token() : AuthToken
+         
+         renvoyer :m_Token
+        type : 1966080
+     template_refs : []
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : IQAAACAAAAAFPuXd7fBX1/SiDTB6sHrfMZ5LqScVEUxNStUfcDtxIwFPEz+iD9Gkb2T8
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x1a4e36db040f4311
+  internal_properties : IQAAACAAAABDeCMfozZFpzgqxeIXhYeFdAaPGk00grp/EBDAJmpRaTMRIb1iTRNmLaK6
+custom_note :
+ internal_properties : IQAAACAAAADHMJbkzjYofeIDmEvswFy+SzkIk5HN+Jrst5U0+JApjeCrL9+4Iw==
