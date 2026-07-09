@@ -23,7 +23,34 @@ window :
      width : 1010
      height : 694
      tab_order : 0
-    controls : []
+    controls :
+     -
+       name : BTN_Deconect
+       identifier : 0x2a4fbedf016092a1
+       internal_properties : IQAAACAAAAAIJS1PW3XeNi4j6FoMfyMRcrebEcb7oFYJamYKs+9Y7NuONtAeS0DMdFy7A3GgnXnT/d5eW12tKq0+uQjiXfTAsysWO7e6jS6penj5z9qeGkl21JNfzah9awqIu+nDKvWns+75FU4qGd4JtEYTyyRtWjSkBh4ek4sWLjkLV5tNN2WRRbBNZK7b4b2MTdQt8BskS7M+B/igmDZOdCRzmWhRZVwFVtn3ZuTHGbrMFQDt1EjOwmQF1bfUa/dDLYXX6Tqp6S8pJnl1kpktTp7Bpx46iSD2ymsESVxvq8qIIOtrTbv2czDb2ej0hBGYj/C4GHJZcn8XXfyq1V/9Xy3ipxuZBWj7U+bjCklnBPpA2FRvRKknJuebQeCCFkhDArYr7s5NQT46R633AMnwu9q4A01IhAS0UH5SGikBEmusiBQOn4Q8p9tvFiiYVLULbDHmIUB6qsyzHxLz/16leitqZOp+rpR81SP2AFXewvLwVOtR4m1IeZC4Uo4AR9JTcQiV0lpOOibxnuPPl8m35KOGdqAJJo3gLcjN/YHYTbzQWC23qo5I7QnIaBiPAVviJPt9GHKPS7MiSxcETTve1+dpPx2ndcJJwkV6N/RNzHkGpYkiSBUojyl0Hvotd5Yh8DGbFBd1a2lL4EvUmZAjiPK3046RC0OfZW9SgixGU4L+34+ssQ+1V0y7z62Z+ww6o+sM5p8TEa2/lynBQZ1Tg+LUvfgJtSg8ZevEGC1cqROxxBHp6GtnXx2pe8SAI4ldNBXadkqOUjlBJH6CTwlGc0Wu/2SIjJJuFwnLZhYzwSs86aaHkSl+YS1Z6CckJinxqms3tuYMdAz63rMZG7hBS4IlaEb9K3fPTRy7NyYN4rIa8Mkuq9WYEzCNCVvWdToUrobbWP13HirZxLAklr3LGOtxKjQIpSIZ+yez7VZkaT4frZNOFz8Xpkv8d+tgG+sDwudzFz1AWDQzrQuXX5IyVPF7U68RW5mWAo9KhX2migGqMA2Bqx6Ga+SjkXXl/1D8a7ca8uWiOgbcKOM9NmQr464xL38ADKYQn3r5z1RMEypxgj33V+e3nS8LO0XlCrOo4GasO0lPCkJx8MQ9gLHw56fdmk0EiurY++6JlgGqNOTN8vNI7n1etjcO612HBzGxkawE0hiRBAXD4cZkPvQJaynnqGnf+W6mijM6OTHitUE0/YxD9OlkfHOvSBgLCvkB
+       properties :
+        x : 885
+        y : 9
+        width : 120
+        height : 31
+        accelerator_key : 65535
+        tab_order : 0
+       type : 4
+       code_elements :
+        type_code : 4
+        p_codes :
+         -
+           code : |1-
+            
+            si pas ouinon("Voulez vous vraiment vous déconnecter ?") ALORS
+            	retour
+            FIN
+            
+            vg_oApp.oUser.Disconnect()
+           type : 18
+         -
+           type : 161
+           enabled : false
     type : 32
     code_elements :
      type_code : 70
