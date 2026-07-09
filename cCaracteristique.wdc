@@ -15,10 +15,11 @@ class :
   p_codes :
    -
      code : |1+
-      
-      
       cCaracteristique est une Classe
-      
+      PRIVE
+      	m_sTag			est une chaîne
+      	m_sName			est une chaîne
+      	m_sDesc			est une chaîne
       fin
      type : 131072
   procedures :

@@ -15,12 +15,12 @@ class :
   p_codes :
    -
      code : |1+
-      
       cApp est une Classe
       privé
       	m_oUser				est un cUser
       	m_oRouter			est un cRouter
-      	m_taCaracteristique est un tableau associatif de cCaracteristique
+      	
+      	m_defCaract			est un tableau associatif de cCaracteristique
       fin
      type : 131072
   procedures :
