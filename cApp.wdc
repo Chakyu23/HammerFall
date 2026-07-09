@@ -41,88 +41,19 @@ class :
       procédure Destructeur()
       
      type : 655360
+  properties :
    -
-     name : Connect
-     internal_properties : IQAAACAAAAADlc+TLXgu3ISKMeb6PY2Fh7WkeY05ZOt8Y7H6xJ8j+pGemDnbaP3C8K+cSLOcNxgAwS7qccc0advlMkk//KVvdp7N4UqHZ+o5v+f2wHsFUffmJ8g44YwHUhGdHFUEcg==
-     procedure_id : 1895523119791466508
-     type_code : 12
-     code : |1-
-      //!
-      //! @brief <indiquez ici ce que fait la procédure>
-      //!
-      //! @param sLogin (chaîne ANSI)  s  <indiquez ici le rôle de s>
-      //! @param sMdp (chaîne ANSI)  <indiquez ici le rôle de sMdp>
-      //!
-      //!
-      
-      procédure Connect(sLogin est une chaîne, sMdp est une chaîne)
-      rep est un JSON
-      VariableRAZ(:m_oUser)
-      
-      rep = pglb_AuthentBasic(sLogin, sMdp)
-      si rep.Code <> 200 ALORS
-      	cMess.PushError(rep.Mess)
-      	retour
-      FIN
-      
-      
-      
-      FEN_HammerFall._Menu..Etat = Actif
-      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
-     type : 458752
-   -
-     name : Disconnect
-     internal_properties : IQAAACAAAAAXiSNH+TTqiFDGjXL+OYmBg8GwJaE9iP9gR5WucNPnPtVS3E3XBKmObVGcoFVsOZuFuN3bYJ7wpQfRLlUDOOErslJ5tWaje/4Nw/uarG8JVfviKzTMFbgzjt3pyDkgXg==
-     procedure_id : 1895523149856244080
-     type_code : 12
-     code : |1-
-      //!
-      //! @brief <indiquez ici ce que fait la procédure>
-      //!
-      //!
-      procédure Disconnect()
-      VariableRAZ(:m_oUser)
-      
-      FEN_HammerFall._Menu..Etat = Grisé
-      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Cnx)
-     type : 458752
-   -
-     name : GetUserToken
-     internal_properties : IQAAACAAAACPsiW2Me13rHO4K99R+QxBVbCB+NjDvqEfK38Ri5lUKqChoUDpzBTkx8/6pV+X7CyT9FmCmRVs4FMpfO8xqUXKT0fxigrg3O44Cs/yEg==
-     procedure_id : 1895526383999680513
-     type_code : 12
-     code : |1+
-      //!
-      //! @brief <indiquez ici ce que fait la procédure>
-      //!
-      //! @return (AuthToken)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
-      //!
-      //!
-      
-      procédure GetUserToken()
-      
-      renvoyer :m_oUser.Token
-     type : 458752
-   -
-     name : Register
-     internal_properties : IQAAACAAAADoIxt47UNOhHg5tqKF0YHoqDbBuEzhUeALjRqur8wMp/lka761MdDFilYdVk6T07kFHiXpuUHkg7FC4oUN8yMCa3ITi3GpZeMmWvwkv+upgAvmW12SxaB6yaPNFR2JvNf4eLVwkGUlZK2Oq1OoeV3r7ayqlhSygvS8BFpEpx/zN03Ka9FnZdgbISTEdJKAuA5AMo7VN+TgOVa7/5Ty
-     procedure_id : 1895851508620235546
-     type_code : 12
-     code : |1+
-      //!
-      //! @brief <indiquez ici ce que fait la procédure>
-      //!
-      //!
-      procédure Register(sLogin est une chaîne, sMdp est une chaîne)
-      VariableRAZ(:m_oUser)
-      
-      SI PAS pglb_RegisterBasic(sLogin, sMdp) ALORS
-      	cMess.PushError("Échec de l'enregistrement")
-      FIN
-      
-      FEN_HammerFall._Menu..Etat	= Actif
-      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
-     type : 458752
+     name : oUser
+     identifier : 0x1a4f96a200b7639e
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique oUser() : cUser
+         
+         renvoyer :m_oUser
+        type : 1966080
+     template_refs : []
   procedure_templates : []
   property_templates : []
  code_parameters :

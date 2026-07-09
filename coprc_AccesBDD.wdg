@@ -73,8 +73,16 @@ procedure_set :
       Rep.User.ID		= Users.IDUsers
       Rep.User.Rank	= Users.Rank
       
+      // Gestion Token
+      bufToken =  priv_GenToken()
+      si bufToken = 0 ALORS
+      	Rep.Code	= 502
+      	Rep.Mess	= "Le serveur n'est pas disponible"
+      	RENVOYER Rep
+      FIN
       
-      Rep.Token		=
+      Rep.User.Token		= bufToken
+      
       renvoyer Rep
      type : 458752
    -
@@ -93,10 +101,11 @@ procedure_set :
       //!
       
       procédure pglb_RegisterBasic(sLogin est une chaîne, sMdp est une chaîne)
-      Rep		est un JSON
-      BufMdp	est un Buffer
-      bufRank	est un Buffer
-      bufKey	est un Buffer
+      Rep			est un JSON
+      BufMdp		est un Buffer
+      bufRank		est un Buffer
+      bufKey		est un Buffer
+      bufToken	est un buffer
       
       BufMdp = Majuscule(BufferVersHexa(HashChaîne(HA_PBKDF2_HMAC_SHA_256, sMdp, CC_SELMDP, 256, 256), SansRegroupement))
       si HLitRecherche(Users, Login, sLogin, hIdentique) ALORS
@@ -120,9 +129,10 @@ procedure_set :
       	RENVOYER Rep
       FIN
       
-      bufRank = cUser::ePlayer..Valeur
-      bufKey	= Users.IDUsers + CC_SELMDP
-      Users.Rank = CrypteStandard(bufRank, bufKey, crypteAES256)
+      // Gestion Grade
+      bufRank		= cUser::ePlayer..Valeur
+      bufKey		= Users.IDUsers + CC_SELMDP
+      Users.Rank	= CrypteStandard(bufRank, bufKey, crypteAES256)
       
       SI PAS HModifie(Users) ALORS
       	Rep.Code	= 502
@@ -133,6 +143,16 @@ procedure_set :
       Rep.Code		= 200
       Rep.User.ID		= Users.IDUsers
       Rep.User.Rank	= Users.Rank
+      
+      // Gestion token
+      bufToken		=  priv_GenToken()
+      SI bufToken = 0 ALORS
+      	Rep.Code	= 502
+      	Rep.Mess	= "Le serveur n'est pas disponible"
+      	RENVOYER Rep
+      FIN
+      
+      Rep.User.Token		= bufToken
       
       renvoyer Rep
      type : 458752
@@ -187,21 +207,56 @@ procedure_set :
       //!
       //! @brief <indiquez ici ce que fait la procédure>
       //!
+      //! @return (entier)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
       //!
+      //!
+      
       procédure privé priv_GenToken()
-      // on est sur un utilisateur
+      
+      SI pas HLitRecherche(Token, IDUsers, Users.IDUsers, hIdentique) ALORS
+      	si HErreur() <> 0 alors RENVOYER Faux
+      
+      	Token.IDUsers = Users.IDUsers
+      	SI PAS HAjoute(Token) ALORS
+      		RENVOYER Faux
+      	FIN
+      FIN
+      
+      Token.DateToken = DateSys()
+      si pas HModifie(Token) ALORS
+      	renvoyer faux
+      FIN
+      
+      RENVOYER Token.IDToken
      type : 458752
    -
      name : priv_ReadToken
      procedure_id : 1895869809661219989
      type_code : 15
-     code : |1+
+     code : |1-
       //!
       //! @brief <indiquez ici ce que fait la procédure>
       //!
+      //! @param nUUID (UUID sur 256 bits)  nUID (UUID sur 256 bits)  <indiquez ici le rôle de nUID>
       //!
-      procédure Privée priv_ReadToken()
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
       
+      procédure Privée priv_ReadToken(nUUID est un UUID sur 256)
+      dDateLimit est une date
+      
+      si pas HLitRecherche(Token, IDToken, nUUID, hIdentique) ALORS
+      	renvoyer faux
+      FIN
+      
+      dDateLimit = DateSys()
+      dDateLimit..Jour -= 31
+      si Token.DateToken < dDateLimit ALORS
+      	renvoyer faux
+      FIN
+      
+      renvoyer vrai
      type : 458752
   procedure_templates : []
   property_templates : []

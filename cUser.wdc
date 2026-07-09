@@ -26,9 +26,9 @@ class :
       
       privé
       
-      	m_sUID		est une chaîne
+      	m_sUUID		est une chaîne
       	m_sLogin	est une chaîne
-      	m_Token		est un AuthToken
+      	m_Token		est une chaîne
       
       	m_eRank 	est un eRanks
       fin
@@ -50,6 +50,113 @@ class :
       procédure Destructeur()
       
      type : 655360
+   -
+     name : Connect
+     procedure_id : 1895899650816776360
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param sLogin (chaîne ANSI)  s  <indiquez ici le rôle de s>
+      //! @param sMdp (chaîne ANSI)  <indiquez ici le rôle de sMdp>
+      //!
+      //!
+      
+      procédure Connect(sLogin est une chaîne, sMdp est une chaîne)
+      rep est un JSON
+      
+      VariableRAZ(Objet)
+      
+      rep = pglb_AuthentBasic(sLogin, sMdp)
+      si rep.Code <> 200 ALORS
+      	cMess.PushError(rep.Mess)
+      	retour
+      FIN
+      
+      :m_sUUID	= rep.User.ID
+      :m_sLogin 	= sLogin
+      
+      si pas :priv_ReadRank(rep.User.Token) ALORS
+      	cMess.PushError("Erreur de token reçus")
+      	RETOUR
+      FIN
+      
+      FEN_HammerFall._Menu..Etat = Actif
+      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
+     type : 458752
+   -
+     name : Disconnect
+     procedure_id : 1895899650816841943
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      procédure Disconnect()
+      VariableRAZ(objet)
+      
+      FEN_HammerFall._Menu..Etat = Grisé
+      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Cnx)
+     type : 458752
+   -
+     name : Register
+     procedure_id : 1895899650816973093
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      procédure Register(sLogin est une chaîne, sMdp est une chaîne)
+      rep est un JSON
+      
+      VariableRAZ(Objet)
+      
+      rep = pglb_RegisterBasic(sLogin, sMdp)
+      SI rep.Code <> 200 ALORS
+      	cMess.PushError(rep.Mess)
+      	RETOUR
+      FIN
+      
+      :m_sUUID	= rep.User.ID
+      :m_sLogin 	= sLogin
+      
+      SI PAS :priv_ReadRank(rep.User.Token) ALORS
+      	cMess.PushError("Erreur de token reçus")
+      	RETOUR
+      FIN
+      
+      FEN_HammerFall._Menu..Etat	= Actif
+      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
+     type : 458752
+   -
+     name : priv_ReadRank
+     procedure_id : 1895900677320293952
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param bufRank (buffer)  buffRank (buffer)  sRank (buffer)  <indiquez ici le rôle de sRank>
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure privée priv_ReadRank(bufRank est un buffer)
+      bufKey est un buffer
+      
+      bufKey = :m_sUUID + CC_SELMDP
+      :m_Token = deCrypteStandard(bufRank, bufKey, crypteAES256)
+      
+      si :m_Token = "" ALORS
+      	renvoyer faux
+      FIN
+      
+      renvoyer vrai
+     type : 458752
   properties :
    -
      name : Token
@@ -58,9 +165,21 @@ class :
      p_codes :
       -
         code : |1-
-         procédure publique Token() : AuthToken
+         procédure publique Token() : chaîne
          
          renvoyer :m_Token
+        type : 1966080
+     template_refs : []
+   -
+     name : eRank
+     identifier : 0x1a4f976e01107ed8
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique eRank() : cUser.eRanks
+         
+         renvoyer :m_eRank
         type : 1966080
      template_refs : []
   procedure_templates : []
