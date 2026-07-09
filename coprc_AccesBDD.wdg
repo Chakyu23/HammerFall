@@ -188,7 +188,7 @@ procedure_set :
       //! @brief <indiquez ici ce que fait la procédure>
       //!
       //!
-      procédure priv_GenToken()
+      procédure privé priv_GenToken()
       // on est sur un utilisateur
      type : 458752
    -
@@ -200,7 +200,7 @@ procedure_set :
       //! @brief <indiquez ici ce que fait la procédure>
       //!
       //!
-      procédure priv_ReadToken()
+      procédure Privée priv_ReadToken()
       
      type : 458752
   procedure_templates : []
