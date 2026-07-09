@@ -20,6 +20,9 @@ class :
       	m_sTag			est une chaîne
       	m_sName			est une chaîne
       	m_sDesc			est une chaîne
+      
+      	m_bCalc			est un booléen
+      	m_sCalc			est une chaîne
       fin
      type : 131072
   procedures :

@@ -1,42 +1,34 @@
 #To edit and compare internal_properties, use WINDEV integrated tools.
 #Internal properties refer to the properties of controls in windows, reports, etc.
 info :
- name : cUser
+ name : cJauge
  major_version : 31
  minor_version : 4
  type : 4
  description : ""
  subtype : 0
 class :
- identifier : 0x1a4e36e104125b7b
+ identifier : 0x1a4f5196031aac22
  internal_properties : IQAAACAAAABKsxthc0YewCHsxvkcfERUUToabWJ9Bnj6bStOP0zWiFsuqlQ1rg==
  code_elements :
   type_code : 10
   p_codes :
    -
      code : |1+
-      eRanks est une énumération
-      	eAdmin		= "ALPHA-e5c0214ca2c7b66d99a6350c6f131c83"
-      	eModerator 	= "OMEGA-f3c2645c3577a2eae5c6fe5df6c867c8"
-      	ePlayer		= "OSCAR-26679ef43b2f43bfbc48215c28e27e9f"
-      	eBot		= "BETA-970fc92b5b92253eebefa653a680999e"
-      fin
+      cJauge est une Classe
+      privée
+      	m_sTag			est une chaîne
+      	m_sName			est une chaîne
+      	m_sDesc			est une chaîne
       
-      cUser est une Classe
-      
-      privé
-      
-      	m_sUID		est une chaîne
-      	m_sLogin	est une chaîne
-      	m_Token		est un AuthToken
-      
-      	m_eRank 	est un eRanks
+      	m_sCaractMax	est une chaîne // Correspond a un tag
+      	m_sCaractVal	est une chaîne // Correspond a un tag
       fin
      type : 131072
   procedures :
    -
      name : Constructeur
-     procedure_id : 1895512833233476475
+     procedure_id : 1895823672885357602
      type_code : 27
      code : |1+
       procédure Constructeur()
@@ -44,25 +36,12 @@ class :
      type : 589824
    -
      name : Destructeur
-     procedure_id : 1895512833233542011
+     procedure_id : 1895823672885423138
      type_code : 28
      code : |1+
       procédure Destructeur()
       
      type : 655360
-  properties :
-   -
-     name : Token
-     identifier : 0x1a4e38cf05bee635
-     type_code : 103
-     p_codes :
-      -
-        code : |1-
-         procédure publique Token() : AuthToken
-         
-         renvoyer :m_Token
-        type : 1966080
-     template_refs : []
   procedure_templates : []
   property_templates : []
  code_parameters :
@@ -70,7 +49,7 @@ class :
   original_name : Classe1
 resources :
  string_res :
-  identifier : 0x1a4e36db040f4311
+  identifier : 0x1a4f518f03179195
   internal_properties : IQAAACAAAABDeCMfozZFpzgqxeIXhYeFdAaPGk00grp/EBDAJmpRaTMRIb1iTRNmLaK6
 custom_note :
  internal_properties : IQAAACAAAADHMJbkzjYofeIDmEvswFy+SzkIk5HN+Jrst5U0+JApjeCrL9+4Iw==

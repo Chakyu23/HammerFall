@@ -82,13 +82,33 @@ project :
      physical_name : .\cRouter.wdc
      type : 4
    -
+     name : coprc_AccesBDD
+     identifier : 0x4a4f6ab700ebd826
+     internal_properties : IQAAACAAAABa0sZW1Bn/d/tWkslC8ho3om/Lls+DxjniQPOzV+gD5GYOjVmGsRPR3wFiYzr7yAOAtPQQvKSZk4Wv
+     physical_name : .\coprc_AccesBDD.wdg
+     type : 7
+   -
+     name : cCalcul
+     identifier : 0x4a4f519d00b4caa6
+     internal_properties : IQAAACAAAAARbZGBl9ywrIT5y5rlZe3rI2rIs6KufyKd04tjXJYxLqbE4Y1QL5nVg7OVMM9Wd6wr36/V+Wdm3tB6
+     physical_name : .\cCalcul.wdc
+     type : 4
+   -
+     name : cJauge
+     identifier : 0x4a4f519600b2ac31
+     internal_properties : IQAAACAAAAAakoaWlNm/t7uWUomCslp29FedOiUrIp3gEJFKpGHCQVtxFpgLMkBueEAio3q7iENA9LTQ/GRZ08Vv
+     physical_name : .\cJauge.wdc
+     type : 4
+   -
      name : cCaracteristique
      identifier : 0x4a4e1c20003dd954
      internal_properties : IQAAACAAAADuiprUO+Yr3OtF6zDHHj9F0PtmfHeIQL5U1gxVRA8dNl51hJw3hp1uNr01r8KPYa5HeMZyQHxn5g==
      physical_name : .\cCaracteristique.wdc
      type : 4
   other_elements : []
-  array_of_analysis : []
+  array_of_analysis :
+   -
+     analysis : .\HammerFall.ana\HammerFall.wda
   net_assemblies : []
   uwp_api : []
   external_components : []
@@ -124,6 +144,46 @@ rad :
  internal_properties : IQAAACAAAACYP0h+bAd91/mjkPHq9cpKhhx82cdYyh+wsXk=
 project_explorer :
  explorer_type : project
+ children :
+  -
+    explorer_type : classes
+    children :
+     -
+       name : Data
+       explorer_type : custom_folder
+       children :
+        -
+          name : cCalcul
+          explorer_type : element
+          type : 4
+        -
+          name : cCaracteristique
+          explorer_type : element
+          type : 4
+        -
+          name : cJauge
+          explorer_type : element
+          type : 4
+     -
+       name : Operating
+       explorer_type : custom_folder
+       children :
+        -
+          name : cMenuPrincipal
+          explorer_type : element
+          type : 4
+        -
+          name : cMess
+          explorer_type : element
+          type : 4
+        -
+          name : cRouter
+          explorer_type : element
+          type : 4
+        -
+          name : cUser
+          explorer_type : element
+          type : 4
 resources :
  string_res :
   identifier : 0x0
