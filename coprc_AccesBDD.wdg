@@ -103,8 +103,6 @@ procedure_set :
       procédure pglb_RegisterBasic(sLogin est une chaîne, sMdp est une chaîne)
       Rep			est un JSON
       BufMdp		est un Buffer
-      bufRank		est un Buffer
-      bufKey		est un Buffer
       bufToken	est un buffer
       
       BufMdp = Majuscule(BufferVersHexa(HashChaîne(HA_PBKDF2_HMAC_SHA_256, sMdp, CC_SELMDP, 256, 256), SansRegroupement))
@@ -129,10 +127,7 @@ procedure_set :
       	RENVOYER Rep
       FIN
       
-      // Gestion Grade
-      bufRank		= cUser::ePlayer..Valeur
-      bufKey		= HashChaîne(HA_HMAC_SHA3_256, Users.IDUsers + CC_SELMDP)
-      Users.Rank	= CrypteStandard(bufRank, bufKey, crypteAES256)
+      Users.Rank	= priv_CrypteRank(Users.IDUsers, cUser::ePlayer)
       
       SI PAS HModifie(Users) ALORS
       	Rep.Code	= 502
@@ -164,17 +159,15 @@ procedure_set :
       //!
       //! @brief <indiquez ici ce que fait la procédure>
       //!
-      //! @param sUUID (chaîne ANSI)  sEncodedUUID (chaîne ANSI)  (chaîne ANSI)  <indiquez ici le rôle de sUUID>
+      //! @param sUUID (UUID sur 128 bits)  sEncodedUUID (chaîne ANSI)  (chaîne ANSI)  <indiquez ici le rôle de sUUID>
       //! @param eRank (cUser.eRanks)  <indiquez ici le rôle de eRank>
       //!
       //! @return (JSON)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
       //!
       //!
       
-      procédure pglb_ChangeRank(sUUID est une chaîne, eRank est un cuser::eRanks)
+      procédure pglb_ChangeRank(sUUID est un uuid, eRank est un cuser::eRanks)
       Rep		est un JSON
-      bufRank	est un Buffer
-      bufKey	est un Buffer
       
       SI PAS HLitRecherche(Users, IDUsers, sUUID, hIdentique) ALORS
       	SI HErreur() <> 0 ALORS
@@ -187,15 +180,15 @@ procedure_set :
       	RENVOYER Rep
       FIN
       
-      bufRank		= eRank..Valeur
-      bufKey		= HashChaîne(HA_HMAC_SHA3_256, sUUID + CC_SELMDP)
-      Users.Rank	= CrypteStandard(bufRank, bufKey, crypteAES256)
+      users.Rank = priv_CrypteRank(Users.IDUsers, eRank)
       
       SI PAS HModifie(Users) ALORS
       	Rep.Code	= 502
       	Rep.Mess	= "Le serveur n'est pas disponible"
       	RENVOYER Rep
       FIN
+      
+      Rep.Code = 200
       
       RENVOYER Rep
      type : 458752
@@ -257,6 +250,34 @@ procedure_set :
       FIN
       
       renvoyer vrai
+     type : 458752
+   -
+     name : priv_CrypteRank
+     procedure_id : 1896264499787845386
+     type_code : 15
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param sUUID (UUID sur 128 bits)  <indiquez ici le rôle de sUUID>
+      //! @param eRank (cUser.eRanks)  <indiquez ici le rôle de eRank>
+      //!
+      //! @return (variant)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure privée priv_CrypteRank(sUUID est un UUID, eRank est un cUser::eRanks)
+      bufRank	est un Buffer
+      bufKey	est un Buffer
+      sResult	est une chaîne
+      sRank	est une chaîne
+      sRank = eRank..Valeur
+      
+      bufRank		= sRank + "|" + CC_SELMDP
+      bufKey		= HashChaîne(HA_HMAC_SHA3_256, sUUID + CC_SELMDP)
+      sResult		= CrypteStandard(bufRank, bufKey, crypteAES256)
+      
+      renvoyer sResult
      type : 458752
   procedure_templates : []
   property_templates : []

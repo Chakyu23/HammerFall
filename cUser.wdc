@@ -144,10 +144,11 @@ class :
       
       procédure privée priv_ReadRank(LOCAL bufRank est un buffer)
       bufKey			est un buffer
-      sRankResult	est une chaîne
+      sRankResult		est une chaîne
       
       bufKey			= HashChaîne(HA_HMAC_SHA3_256, :m_sUUID + CC_SELMDP)
-      sRankResult	= deCrypteStandard(bufRank, bufKey, crypteAES256)
+      sRankResult		= deCrypteStandard(bufRank, bufKey, crypteAES256)
+      sRankResult		= ExtraitChaîne(sRankResult, 1, "|")
       
       si pâs EnumérationVérifieValeur(eRanks, sRankResult) ALORS
       	cMess.PushError("Compte en erreur contacter le support")
