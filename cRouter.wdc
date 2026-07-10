@@ -3,7 +3,7 @@
 info :
  name : cRouter
  major_version : 31
- minor_version : 4
+ minor_version : 5
  type : 4
  description : ""
  subtype : 0
@@ -76,7 +76,7 @@ class :
       FIN
       
       RequestGet.url			= sURL
-      RequestGet.AuthToken	= vg_oApp.GetUserToken()
+      RequestGet.AuthToken	= vg_oApp.oUser.Token
       
       ReponseGet				= HTTPEnvoie(RequestGet)
       
@@ -91,22 +91,6 @@ class :
       FIN
       
       renvoyer faux
-     type : 458752
-   -
-     name : UserConnect
-     procedure_id : 1895518073156139119
-     type_code : 12
-     code : |1+
-      //!
-      //! @brief <indiquez ici ce que fait la procédure>
-      //!
-      //! @param oUser (cUser)  <indiquez ici le rôle de oUser>
-      //! @param sMdp (mot de passe sécurisé)  <indiquez ici le rôle de sMdp>
-      //!
-      //!
-      
-      procédure UserConnect(oUser est un cUser, sMdp est un MotDePasseSécurisé)
-      
      type : 458752
    -
      name : Post
@@ -128,7 +112,7 @@ class :
       FIN
       
       RequestPost.URL			= sURL
-      RequestPost.AuthToken	= vg_oApp.GetUserToken()
+      RequestPost.AuthToken	= vg_oApp.oUser.Token
       RequestPost.Contenu 	= DataJSON..FormatJSON
       
       ReponsePost				= HTTPEnvoie(RequestPost)
