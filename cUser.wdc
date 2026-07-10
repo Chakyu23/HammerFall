@@ -18,6 +18,7 @@ class :
       eRanks est une énumération
       	eAdmin		= "ALPHA-e5c0214ca2c7b66d99a6350c6f131c83"
       	eModerator 	= "OMEGA-f3c2645c3577a2eae5c6fe5df6c867c8"
+      	eCreateur 	= "CETY-0c919f2b3f784a142f3f1db75e35dec0"
       	ePlayer		= "OSCAR-26679ef43b2f43bfbc48215c28e27e9f"
       	eBot		= "BETA-970fc92b5b92253eebefa653a680999e"
       fin
@@ -66,7 +67,7 @@ class :
       procédure Connect(sLogin est une chaîne, sMdp est une chaîne)
       rep est un JSON
       
-      VariableRAZ(Objet)
+      :priv_Raz()
       
       rep = pglb_AuthentBasic(sLogin, sMdp)
       si rep.Code <> 200 ALORS
@@ -76,12 +77,10 @@ class :
       
       :m_sUUID	= rep.User.ID
       :m_sLogin 	= sLogin
+      :m_Token	= rep.User.Token
       
-      si pas :priv_ReadRank(rep.User.Token) ALORS
-      	cMess.PushError("Erreur de token reçus")
-      	RETOUR
-      FIN
-      
+      si pas :priv_ReadRank(rep.User.Rank) ALORS Retour
+       
       FEN_HammerFall._Menu..Etat = Actif
       ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
      type : 458752
@@ -95,7 +94,7 @@ class :
       //!
       //!
       procédure Disconnect()
-      VariableRAZ(objet)
+      :priv_Raz()
       
       FEN_HammerFall._Menu..Etat = Grisé
       ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Cnx)
@@ -112,7 +111,7 @@ class :
       procédure Register(sLogin est une chaîne, sMdp est une chaîne)
       rep est un JSON
       
-      VariableRAZ(Objet)
+      :priv_Raz()
       
       rep = pglb_RegisterBasic(sLogin, sMdp)
       SI rep.Code <> 200 ALORS
@@ -122,11 +121,9 @@ class :
       
       :m_sUUID	= rep.User.ID
       :m_sLogin 	= sLogin
+      :m_Token	= rep.User.Token
       
-      SI PAS :priv_ReadRank(rep.User.Token) ALORS
-      	cMess.PushError("Erreur de token reçus")
-      	RETOUR
-      FIN
+      SI PAS :priv_ReadRank(rep.User.Rank) ALORS retour
       
       FEN_HammerFall._Menu..Etat	= Actif
       ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
@@ -145,17 +142,72 @@ class :
       //!
       //!
       
-      procédure privée priv_ReadRank(bufRank est un buffer)
-      bufKey est un buffer
+      procédure privée priv_ReadRank(LOCAL bufRank est un buffer)
+      bufKey			est un buffer
+      sRankResult	est une chaîne
       
-      bufKey = :m_sUUID + CC_SELMDP
-      :m_Token = deCrypteStandard(bufRank, bufKey, crypteAES256)
+      bufKey			= HashChaîne(HA_HMAC_SHA3_256, :m_sUUID + CC_SELMDP)
+      sRankResult	= deCrypteStandard(bufRank, bufKey, crypteAES256)
       
-      si :m_Token = "" ALORS
-      	renvoyer faux
+      si pâs EnumérationVérifieValeur(eRanks, sRankResult) ALORS
+      	cMess.PushError("Compte en erreur contacter le support")
+      	RENVOYER Faux
       FIN
+      :m_eRank = EnumérationDepuisValeur(eRanks, sRankResult)
       
       renvoyer vrai
+     type : 458752
+   -
+     name : priv_Raz
+     procedure_id : 1896249209625737661
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      
+      procédure privée priv_Raz()
+      :m_sUUID	= ""
+      :m_sLogin	= ""
+      :m_Token	= ""
+      :m_eRank	= ePlayer
+     type : 458752
+   -
+     name : TitreCompte
+     procedure_id : 1896255862550634480
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @return (chaîne ANSI)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure TitreCompte()
+      sTitre est une chaîne
+      
+      sTitre = "Bienvenue "
+      
+      SELON :m_eRank
+      	CAS eAdmin
+      		sTitre += "administrateur "
+      
+      	CAS eModerator
+      		sTitre += "modérateur "
+      
+      	cas eCreateur
+      		sTitre += "createur "
+      
+      	CAS eBot
+      		sTitre += "supervision du bot "
+      
+      	autre cas
+      FIN
+      sTitre += :m_sLogin
+      
+      renvoyer sTitre
      type : 458752
   properties :
    -

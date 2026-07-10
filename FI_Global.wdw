@@ -51,13 +51,32 @@ window :
          -
            type : 161
            enabled : false
+     -
+       name : LIB_Compte
+       identifier : 0x2a50da8c0d40ae3a
+       internal_properties : IQAAACAAAAA+7hZAl88r0RqMxOGKlxmcc+bTCmpnXudB1IyBpRtPAjl8c6ZJ5xGDe1Rrw6hBM9qS/Ryz2hTtT/mUCpZofmX0GpSl+aD5E0RRpWSWNJAQXm/S8vmY5Xc8Z511/fQZxwI38bPE9JsgEkQPAOZu2szv5WuUw2nicX406KYekNXByQnYZsh5+IanvHGMEgj8OexhXzVWzPWy6MYcwH4kEML12LY/nPx37tTPFAJlnbKzb7xgRII9r3qSep22+gLy8Y8YcHcZEfuPr9lPR0NFRViFcZBfJdzHG/z3qGVz4UgqJfQUzMQywZtwmUdp3dw5Oz8exg8IhhpV4k0chpElsWFrYtSI0S0ZiHhGh4dtmpS+uWDBOdiP5FTkA/RiuRKb7Mc6CYL+axxJ2O2as62S3f0GQkQWDyW3QMXsig0p0uFrV+ly9RqOpmw9aVXtQEodSeDpqPjCRlredKcryjwG2/8Czjmi4c0j6/5wjXmrwiWmAT4geU2YYqU=
+       properties :
+        x : 6
+        y : 9
+        width : 265
+        height : 26
+        caption :
+         fr-FR : Libellé
+        tab_stop : 0
+        take_focus : 0
+       type : 3
+       code_elements :
+        type_code : 2
+        p_codes : []
     type : 32
     code_elements :
      type_code : 70
      p_codes :
       -
-        code : |1+
-         PROCEDURE MaFenêtre()
+        code : |1-
+         PROCEDURE FI_GLOBAL()
+         
+         LIB_Compte = vg_oApp.oUser.TitreCompte()
       -
         code : |1+
          

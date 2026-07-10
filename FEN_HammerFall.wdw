@@ -113,7 +113,11 @@ window :
    -
      code : |1+
       
+      si pas ouinon("Voulez vous vraiment fermer HammerFall ?") ALORS
+      	retour
+      FIN
       
+      vg_oApp.CloseApp()
      type : 2
  code_parameters :
   internal_properties : IQAAACAAAAA7DJ4vFwXpXFkgSYJm1KBm+pI1Z6cLVUJuN5jUNtC4+Lz8WOmCt+Nxt+v5KGaQfP3CgIz4KNVKfBQVN+ntsJ5byVyLN+EvpKCvjHO7AzOQuXNQ1ssQroXu2TE=

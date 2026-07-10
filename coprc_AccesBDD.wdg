@@ -59,7 +59,7 @@ procedure_set :
       BufMdp = Majuscule(BufferVersHexa(HashChaîne(HA_PBKDF2_HMAC_SHA_256, sMdp, CC_SELMDP, 256, 256), SansRegroupement))
       
       si pas HLitRecherche(Users, LoginPassword, [sLogin, BufMdp], hIdentique) ALORS
-      	si HErreur() = 0 ALORS
+      	si HErreur() <> 0 ALORS
       		Rep.Code	= 502
       		Rep.Mess	= "Le serveur n'est pas disponible"
       	SINON
@@ -113,7 +113,7 @@ procedure_set :
       	Rep.Mess	= "Le login existe déjà"
       	RENVOYER Rep
       SINON
-      	SI HErreur() = 0 ALORS
+      	SI HErreur() <> 0 ALORS
       		Rep.Code	= 502
       		Rep.Mess	= "Le serveur n'est pas disponible"
       		RENVOYER Rep
@@ -131,7 +131,7 @@ procedure_set :
       
       // Gestion Grade
       bufRank		= cUser::ePlayer..Valeur
-      bufKey		= Users.IDUsers + CC_SELMDP
+      bufKey		= HashChaîne(HA_HMAC_SHA3_256, Users.IDUsers + CC_SELMDP)
       Users.Rank	= CrypteStandard(bufRank, bufKey, crypteAES256)
       
       SI PAS HModifie(Users) ALORS
@@ -177,7 +177,7 @@ procedure_set :
       bufKey	est un Buffer
       
       SI PAS HLitRecherche(Users, IDUsers, sUUID, hIdentique) ALORS
-      	SI HErreur() = 0 ALORS
+      	SI HErreur() <> 0 ALORS
       		Rep.Code	= 502
       		Rep.Mess	= "Le serveur n'est pas disponible"
       	SINON
@@ -188,7 +188,7 @@ procedure_set :
       FIN
       
       bufRank		= eRank..Valeur
-      bufKey		= sUUID + CC_SELMDP
+      bufKey		= HashChaîne(HA_HMAC_SHA3_256, sUUID + CC_SELMDP)
       Users.Rank	= CrypteStandard(bufRank, bufKey, crypteAES256)
       
       SI PAS HModifie(Users) ALORS
