@@ -21,8 +21,14 @@ class :
       	m_sName			est une chaîne
       	m_sDesc			est une chaîne
       
-      	m_bCalc			est un booléen
+      	m_nMin			est un entier
+      	m_bMin			est un booléen
+      
+      	m_nMax			est un entier
+      	m_bMac			est un booléen
+      
       	m_sCalc			est une chaîne
+      	m_bCalc			est un booléen
       fin
      type : 131072
   procedures :
