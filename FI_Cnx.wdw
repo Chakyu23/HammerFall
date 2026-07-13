@@ -23,7 +23,115 @@ window :
      width : 1010
      height : 694
      tab_order : 0
-    controls : []
+    controls :
+     -
+       name : SAI_Login
+       identifier : 0x2a50d1bb085b3d36
+       internal_properties : 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
+       properties :
+        x : 336
+        y : 253
+        width : 339
+        height : 33
+        caption :
+         fr-FR : Login
+        accelerator_key : 65535
+        tab_order : 0
+       type : 2
+       code_elements :
+        type_code : 3
+        p_codes :
+         -
+           type : 276
+           enabled : false
+         -
+           type : 277
+           enabled : false
+         -
+           type : 278
+           enabled : false
+         -
+           type : 338
+           enabled : false
+         -
+           type : 339
+           enabled : false
+     -
+       name : SAI_Pass
+       identifier : 0x2a50d1df0868cae0
+       internal_properties : IQAAACAAAADhsgBl3Vw1AfNbYvG4DhcmImzt0MVimeKovjIEXeQTEKb+iIJZY7tPpkTovsNFwKWQL6AoZJWtBLrj9Grq84XDiZbKYcm56vLlUwbYQjPdAoxJdcpJi+gOXLvZzoZI9NgrWrpezymQi1wYC68wPZGoZA54zNt+pHf+H95Rq9/kY0Y0PCHP3POMtnmHdKaESDMWNEr/Ost/Wqjt7KCzP3qWGnHTaE95R68e41sd6utKgnTBuCmMB0rqZDioYDUJwA2RuvCXVVx1V3U0qiwgcle/qm73PjS11FfzhroS5eE3vC2vQCbWMJD3lYdF+ezG69fZrEIpr+KbQeKB2TUZeeQ5ZwdPUZlRYkx/GRsWjOLBJgi1iSDLba1+tLdc9/2Vy1pZ9/G0UYq6wsi3SuycjxygIdGuxdBTFB0ZcE9g2wQ8LIi/66V79jE4/b9BJB7sEANMNdCIwdcNMKY2p3i41c7RY4g+uZWnELABzxH5BLZkDTQaOTo0qjUgtNifksV9s8zV3mmjT+eIscIaDOSFh1iptzRvmPBIpXTNzSNgVtCMnrRiJgl56uCQ7MFKro0kuCbjEGgTzlw9Zc5g9xlQrFGrwSlz0r3ldxfcN4eHyHGDNfIGn/z49zIOisrvKABuPpWRjYYwdbGjupK3mXKfipDkC6LK9fH7a8gSXPOH47hj7exYJd7ygA+D3xpecL9tOpCLPlIeRPNeX+46+ZKLWBmlWe2JYe+tgbmPXt4XrRnsKLYtiI7ksPJU63Icm2ApOZsJmcxus2KB7x7AWb9b9pYoI4YaU4KSqQkXPozpAXYJzzJggpdfvAPR0tEY59uZduTt/yijTk3FyyAe0tuijCeAUI/p0A6ZoCxA77lJYB2FAWWW4Rm4+iEfwW4QYZIxpaPoQwMZFLprpYh4ZNSbxchroZSGqAhYvi4LR2ctym6L7o9N98U6d/qI7CjS3SZO3JU+qDvEGhzVhYRLWzKERqIy2Z1dJxhyo4P1upVQtS8Aoc4ArjIyOgPUBDJw2z5ksDOKhLLz/aaxi6BXju17QFZUHeYg49MFjfM4JWTzzHI/YNHPgy/+jkQ0Y4QUQPzfXgNLdFFYsrcAM0fKj9LlOJZibhTWJpmkV2fyhE0E/FtHkiEAPGKPbklRPjUrjReKrkUvQqhBO2QuPDCT6LAHQi+df1z+nGSJ5m60BHw6JhLUo+3U9BWnmYiCLB3FWXAWitz2ZtLxO23lkRVpd1ZreReJZSjU9Em1zoi0O09InWfMCcD0/s/ADHZPRKEQ21qJ3PBJoLKb2x0kb0771Fc8y//ArkmPxU9bOx7wG+4Immoe9hBtpB2B5NeG6EHJwrYMhthXFzfwXI+FUtSXopGiiPOqBHZxeYw+YeEvSOAHkhhIASZ2mDPe3/Qps51xvuyXTd8nn0IKU00zF+taoMtjw//181MxqeQxSHLeszbeBCCdVDIG+CnzEruoAeTvYCOgpOWgc9P/9bYLH5OJmxeZafAUEmTeisPI2WfmbiS9+ZhOwGbMXSEU0P/e75AVJhzKuTxZawURydRbx0IrvKh8u/zHjpy2i7ujkd+rQG1RRHKfuLyOOr56r2KfpeknV5NqPKfsPt0tOxLOOsRG893xTUO76W+mDw80LlZYEuC0k6Gynvqb/LmFJ4GwQPb4Cmg4w74DKyf7l/6iusxfPmsbRMY9b7s/11+6GmsUc/5DicvMdAG2tkBwG2NNOewQMf8hZTVjEStK6KD5UQGRf90vOaxd5+Lo/L6EYW3v5oyLzpyyA/tIQKY/rPMK2Z8k1v6EkEVj4EsgJKkhOeXN7IEYffRAvbn+vASRDXbPpPDN72jcIrPul1Z8kCrqxmtmlrfJXS9ppbAnBxKEHlx+Xy0PwcptiYmC6+mdlfig3ZxSJoHEASAjvlwKn4/y3m3iwBeKCAytccRl+tuFkQPxFpKigy80YduYcBVAHARD6JxVOyySwAzg5u8/JF3uzRtzo4MRvHkqafxffX1ZEwkw2KtL5jwOUlLmxMNFuPwOH++Rbd9D5eEObnWkcs57M4XxF2Ws2OgA+vvG3e8lQMrg0EUSxX5g4ZCHmjPZKEgYLMlOd2nz0BTrByMsVTVi1wuX3ToDKCqnc31K8vq54kihgWp8pSuu9MtOt+Widboer89Ffrm0yE6FELIb5201fNNmXGpL21x9c4npu5zBZ8ZrCfC/MQYPjO7LHvCH93digZ0zhmfJPHdT/sqnOqDScuTJI8+l5a0M0mpVkYbrCwm7K9I1PBtn0caw9KTP7pkNzIgBOkCRMhmmJjr1rRuuFIYEh0xNFmH1ALUdK3MEwV7mC+AXqFrU1I6LosaPnNb7ofXLM+DQoXwuTBAi8w6bSqqF4CqUb5Wnm3z6VihbVKhmdThpGG2LwlEPt42rRf9u0GnF/zJYFGTezlkXbcaYHne8SLZT30lJ/1smZ8oyruDSImZcauRWMuLYRPzkkH/BsfG96ydpr8lv2hIsZB+tPNmyFk7TvRM66ZMt3D/pI72rRkbVz8k+12v3o/vt1Aaouw0oRL/hk0X4DBhunN7KXstt9LGVw3Ci03mOneX8CmFTsAsGohtna5ZymIREJTkBkIfvdpy4qOrL05VaMg17/vBgJAXkVrCsjEgOfOR8QKYGpRaJABKhrxZcSBupJBVmiB/BRFGGDlp2HvNdwJoK9l9p+doioVbswl0xQFgac5V54J0kOCHkk6t60mioItJymgniAWkdKdNCqHOkJZw5M7vYxsTdm0zpbw==
+       properties :
+        x : 336
+        y : 294
+        width : 339
+        height : 33
+        accelerator_key : 65535
+        tab_order : 1
+       type : 2
+       code_elements :
+        type_code : 3
+        p_codes :
+         -
+           type : 276
+           enabled : false
+         -
+           type : 277
+           enabled : false
+         -
+           type : 278
+           enabled : false
+         -
+           type : 338
+           enabled : false
+         -
+           type : 339
+           enabled : false
+     -
+       name : BTN_Register
+       identifier : 0x2a50d1f508c62072
+       internal_properties : IQAAACAAAAAEO30VFJIvJqZTx8UnWD7vezo5LbyjwKLgXeB/TdYEbahTaNolEGP5Zu1j6PpClmgpi2oECH6FRl6AxxLivo7B7R13X9Lxkt8pYXOB3ja5tlI0sbPAf36WIf6TH2SGaafmQu27k8TeFXYYGCMCwooeo02utwEWs1J5Gwdsrx4+ZQTCNeE4iDXDUy++8ENha6Mizf1ABiiWkqDuV0U/dW2DN1khXj6MJm0cHm6K4wnZu2kYd5X+S3+pjO3+3qSPcniMf5t0n7NE795OrzF02LCId4JDZY1c08vtVQV4/P08eZJuC40NEMDbIRWDaSDTZXtnPNbkRbl9/BI4FmoRKMQxqm9LREzic3NzrlDSQPNIXDktMxaxDaNVtTHSVrGXZALROYufEYj8aNncHDeqFy0HDhY1QBzDP0RqSdYtMvtc2ruixniYse0nc/fcer+e4OvuJDfGVN5xR9b8c6T1GfOu69Ba0R8DohR49xVTwoMMdnnNvF3wf2FsktJ0TZAZF4eGLsI6FvyHNP/smJhw8gjJcZ7uR90BxfjHkYLPT+ABWmaZW3Fub8teNCIta5ld8tH9phGX0qLHcoYjoyARsZqUQ+1r5i5xJsCuRphKEvneb1MoklaG0B0pEot5KqyM3TCGpdwdoqAEnh3n/VakFOfcrRN/2+uwx8+VuKjSret4wilyoEvWsHizI+WYTr35yVp5SIfXFGZncb3TF1XUcdRculx9Dnjqjuur9pPH7jSiOA/Se6/KiwOUMIqiJgmUS67/iuNQozC7CzlGtia0xuyK9iB3TWzlwahW1HSuV28i6SFuWFsm4XHARhlsR4oIDReId9cF6YN7U3+hhvbPKlnpOYgOM5nfdYFamV1DlOMTVPWqQor2wsx7rCb8Z4hIfFneIQSBF5nNaqzI9U9dpVFav7b6arn/403BV96nfW8tm87Iul3nMWHuJlOLuhZdJN8URIHBmC3zh8EwK2/ACK/HVjvPeHLeqKa1EOvMoX32Rq/CGV9HRXGu5HCQmCtbuPdCFSnaZEucopfL7OTpJe+9UYA9A0nOdyoxgAYfr7vf7JFQd1l5P4yenbzfVemJMZj7MQdrAar1rZgEdCq6+ANs9STJwV5VMH+ZNd1wI341UJ4z2TR5GVy50yExMXkT9td5DXeJQWP1BA==
+       properties :
+        x : 381
+        y : 335
+        width : 120
+        height : 32
+        accelerator_key : 65535
+        tab_order : 2
+       type : 4
+       code_elements :
+        type_code : 4
+        p_codes :
+         -
+           code : |1-
+            
+            vg_oApp.oUser.Register(SAI_Login, SAI_Pass)
+           type : 18
+         -
+           type : 161
+           enabled : false
+     -
+       name : BTN_Connect
+       identifier : 0x2a50d1fc08c93ac0
+       internal_properties : IQAAACAAAAA/MFYUzS24gSlNebrAzA2pKMUiWwy8QR5pg2St2O2s6bkgsr5ElCvInig6YmiGnkNkKTHpW8e6LsIwkPXCZXYDdutOXSTuzmdvBHi5lfLT/gMRhyfzHTma6gyanf62rSdXwhQEetxJTx7nVR4VV7zOMDxNGM3gfQObC2JrO906giQr6ra5Fl+yRU/HVm8HrhbQGzUl0zC4A1ZTrz86sd2wILT/6xhPm3kNybnwLEMYGYeu/yRM8nRIF9B+f8ADI/MWlMQuXTpyiqYnwdtpVhByp1mmUPj7x+8VGyDwtJLrPVKq+XEBkTWx3xYEvYzSST6knIrGtMf2XC74NEFZelvYYcb8sXb7l0GuKpJlGxljTiBBmyXxX1aeEx/L5gDWaFGwK+oZn+4UF7qADb4r28wKbjxLvU+HUppaNr5r6LO4PN4Mvl0UgyiBn4x81PbAX+iBUkhrSSqWegkv/9YOT0PZe+xGghvE7N7iqAJgWhsNyjZNJy9kJxB5pJcsWgKOYgdcQYxFGRX/dSVRubWTBm81pwykLDliF0AarlAzqzexGJ2qEGkow+ayBhK0vyI9jJJO0O410q7HriD2BxMczfdUkcg/L0h7VCweA7pnR1fDpVPfaK2GlM1ziHT5wbveUvAK0px6IMYOYCVQjyvRsDqspVzFpvWS7cGjbbhBbJnV5tsTMKospoIXYSouX15zvJY9ZbWcSlRVxc0UT3yzu5WWdgejxVZoJHEVc+Puxd4hYh19uUJGW9Mq+M2EH+J+OPZzlVdvq1zDgbXFlClXyOPibA13Lm5/M0rQzdizfFGJZe0bfjYiSeHKXpKwVB+Wlk0WVMX2073ltaUY4svUkz+IBgqJx9RoSPznAVKzRJTL3V7ql7i9N0OMm2AbuWqDGuR7MYmN/Lj+JTcK1rXrtllF6vY5LEwYWqZEUbXLmYAbgMEIa60x6z9CVCixXfE7ryHKrW9gWGHjnwImvIHi0zNEhcdeeBvJlVME/qrodYyAjxQyjm3cPJrdPU5Tgo3w4qqpIz62uXrp6SJvqzjVYmkIBkxgzerJHLngHgH58QaVPzpqFL/mZu3XBhYHfLFv09lAx0gXtlmW1v/yN7Q8d+t/1Oz2g0FIrhFXVMBzkjNLsXaqURNIWbSeOQbIXkenlCo7
+       properties :
+        x : 509
+        y : 335
+        width : 120
+        height : 32
+        accelerator_key : 65535
+        tab_order : 3
+       type : 4
+       code_elements :
+        type_code : 4
+        p_codes :
+         -
+           code : |1-
+            
+            vg_oApp.oUser.Connect(SAI_Login, SAI_Pass)
+           type : 18
+         -
+           type : 161
+           enabled : false
     type : 32
     code_elements :
      type_code : 70

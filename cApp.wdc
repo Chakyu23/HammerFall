@@ -41,6 +41,20 @@ class :
       procédure Destructeur()
       
      type : 655360
+   -
+     name : CloseApp
+     procedure_id : 1896246868861266727
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      
+      procédure CloseApp()
+      
+      HFerme()
+     type : 458752
   properties :
    -
      name : oUser
