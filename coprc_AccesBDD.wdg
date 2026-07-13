@@ -22,7 +22,7 @@ procedure_set :
       	CC_SELMDP		= "c0a82a1450f482ac521ec78c174d5eaf5c94ed8ba2041d725ee6cbaddafd042d"
       FIN
       
-      vcc_sRep = fRepExe() + [fSep()] + "Data"
+      vcc_sRep = "D:\Data"
       
       si pas fRepExiste(vcc_sRep) ALORS
       	si pas fRepCrée(vcc_sRep) ALORS
