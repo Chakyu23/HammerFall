@@ -3,7 +3,7 @@
 info :
  name : cApp
  major_version : 31
- minor_version : 4
+ minor_version : 5
  type : 4
  description : ""
  subtype : 0
@@ -11,7 +11,6 @@ class :
  identifier : 0x1a4e368303d1ee20
  internal_properties : IQAAACAAAABKsxthc0YewCHsxvkcfERUUToabWJ9Bnj6bStOP0zWiFsuqlQ1rg==
  code_elements :
-  internal_properties : IQAAACAAAAAovxuFTYm81nxVl7oLQiVNP97yVWh/CZl8vliilS8/xcNGAwPXIQXLplacPd1kLfy5t+PeFkRfL3sSrY8XNoDa5Agbl/TrS2SupNjH6IG5eoN1UQBGpEHgHqIpqBPFRZ9PhrKSjiwIxJwMi+/QeSydHMYiOvQhSvES91IvNWXj6AkBXcxd+vnacDfYqt+X8omiZtM1DexVB9/FIaBJw3g0DwCtR2x2xUmQscUQDdAxkq+imJhXTA==
   type_code : 10
   p_codes :
    -
@@ -20,8 +19,6 @@ class :
       privé
       	m_oUser				est un cUser
       	m_oRouter			est un cRouter
-      
-      	m_defCaract			est un tableau associatif de cCaracteristique
       	m_defJauge			est un tableau associatif de cJauge
       fin
      type : 131072
@@ -54,6 +51,19 @@ class :
       procédure CloseApp()
       
       HFerme()
+     type : 458752
+   -
+     name : OpenApp
+     procedure_id : 1897503915663967809
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      procédure OpenApp()
+      
+      cCaracteristique::CaractGetAll()
      type : 458752
   properties :
    -

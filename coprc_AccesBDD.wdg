@@ -3,7 +3,7 @@
 info :
  name : coprc_AccesBDD
  major_version : 31
- minor_version : 4
+ minor_version : 5
  type : 7
  description : ""
  subtype : 0
@@ -59,14 +59,7 @@ procedure_set :
       BufMdp = Majuscule(BufferVersHexa(HashChaîne(HA_PBKDF2_HMAC_SHA_256, sMdp, CC_SELMDP, 256, 256), SansRegroupement))
       
       si pas HLitRecherche(Users, LoginPassword, [sLogin, BufMdp], hIdentique) ALORS
-      	si HErreur() <> 0 ALORS
-      		Rep.Code	= 502
-      		Rep.Mess	= "Le serveur n'est pas disponible"
-      	SINON
-      		Rep.Code	= 404
-      		Rep.Mess	= "Le login n'existe pas"
-      	FIN
-      	RENVOYER Rep
+      	renvoyer Err(404, "Le login n'existe pas")
       FIN
       
       Rep.Code		= 200
@@ -107,44 +100,30 @@ procedure_set :
       
       BufMdp = Majuscule(BufferVersHexa(HashChaîne(HA_PBKDF2_HMAC_SHA_256, sMdp, CC_SELMDP, 256, 256), SansRegroupement))
       si HLitRecherche(Users, Login, sLogin, hIdentique) ALORS
-      	Rep.Code	= 404
-      	Rep.Mess	= "Le login existe déjà"
-      	RENVOYER Rep
-      SINON
-      	SI HErreur() <> 0 ALORS
-      		Rep.Code	= 502
-      		Rep.Mess	= "Le serveur n'est pas disponible"
-      		RENVOYER Rep
-      	FIN
+      	RENVOYER Err(409, "Le login existe déjà")
       fin
       
       HRAZ(Users)
       Users.Login		= sLogin
       Users.Password	= BufMdp
       si pas HAjoute(Users) ALORS
-      	Rep.Code	= 502
-      	Rep.Mess	= "Le serveur n'est pas disponible"
-      	RENVOYER Rep
+      	RENVOYER Err(502, "Le serveur n'est pas disponible")
       FIN
       
-      Users.Rank	= priv_CrypteRank(Users.IDUsers, cUser::ePlayer)
+      Users.Rank	= cUser::ePlayer..Valeur
       
       SI PAS HModifie(Users) ALORS
-      	Rep.Code	= 502
-      	Rep.Mess	= "Le serveur n'est pas disponible"
-      	RENVOYER Rep
+      	RENVOYER Err(502, "Le serveur n'est pas disponible")
       FIN
       
-      Rep.Code		= 200
-      Rep.User.ID		= Users.IDUsers
-      Rep.User.Rank	= Users.Rank
+      Rep.Code			= 200
+      Rep.User.ID			= Users.IDUsers
+      Rep.User.Rank		= Users.Rank
       
       // Gestion token
       bufToken		=  priv_GenToken()
       SI bufToken = 0 ALORS
-      	Rep.Code	= 502
-      	Rep.Mess	= "Le serveur n'est pas disponible"
-      	RENVOYER Rep
+      	RENVOYER Err(502, "Le serveur n'est pas disponible")
       FIN
       
       Rep.User.Token		= bufToken
@@ -170,22 +149,13 @@ procedure_set :
       Rep		est un JSON
       
       SI PAS HLitRecherche(Users, IDUsers, sUUID, hIdentique) ALORS
-      	SI HErreur() <> 0 ALORS
-      		Rep.Code	= 502
-      		Rep.Mess	= "Le serveur n'est pas disponible"
-      	SINON
-      		Rep.Code	= 404
-      		Rep.Mess	= "Le login n'existe pas"
-      	FIN
-      	RENVOYER Rep
+      	RENVOYER Err(404, "Le login n'existe pas")
       FIN
       
-      users.Rank = priv_CrypteRank(Users.IDUsers, eRank)
+      users.Rank = eRank..Valeur
       
       SI PAS HModifie(Users) ALORS
-      	Rep.Code	= 502
-      	Rep.Mess	= "Le serveur n'est pas disponible"
-      	RENVOYER Rep
+      	RENVOYER Err(502, "Le serveur n'est pas disponible")
       FIN
       
       Rep.Code = 200
@@ -252,32 +222,162 @@ procedure_set :
       renvoyer vrai
      type : 458752
    -
-     name : priv_CrypteRank
-     procedure_id : 1896264499787845386
+     name : pglb_CaractGetAll
+     procedure_id : 1897501390197378526
      type_code : 15
-     code : |1+
+     group : 1
+     code : |1-
       //!
       //! @brief <indiquez ici ce que fait la procédure>
       //!
-      //! @param sUUID (UUID sur 128 bits)  <indiquez ici le rôle de sUUID>
-      //! @param eRank (cUser.eRanks)  <indiquez ici le rôle de eRank>
-      //!
-      //! @return (variant)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //! @return (JSON)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
       //!
       //!
       
-      procédure privée priv_CrypteRank(sUUID est un UUID, eRank est un cUser::eRanks)
-      bufRank	est un Buffer
-      bufKey	est un Buffer
-      sResult	est une chaîne
-      sRank	est une chaîne
-      sRank = eRank..Valeur
+      procédure pglb_CaractGetAll()
+      Rep est un JSON
       
-      bufRank		= sRank + "|" + CC_SELMDP
-      bufKey		= HashChaîne(HA_HMAC_SHA3_256, sUUID + CC_SELMDP)
-      sResult		= CrypteStandard(bufRank, bufKey, crypteAES256)
+      req_Caract est une requête SQL =
+      `
+      	SELECT * FROM Caracteristique<§cs:3§>
+      `
       
-      renvoyer sResult
+      si pas HExécuteRequête(req_Caract,hRequêteDéfaut) ALORS
+      	renvoyer err(502, "Le serveur n'est pas disponible")
+      fin
+      
+      Rep.Code = 200
+      Rep.Data = req_Caract.EnregistrementVersJSON()
+      
+      renvoyer Rep
+     type : 458752
+   -
+     name : pglb_CaractSet
+     procedure_id : 1897502038737590972
+     type_code : 15
+     group : 1
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param Request (JSON)  <indiquez ici le rôle de Request>
+      //!
+      //! @return (JSON)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure pglb_CaractSet(Request est un JSON)
+      rep est un Json
+      
+      HRAZ(Caracteristique)
+      
+      Caracteristique.Name					= Request.Name
+      Caracteristique.Val_Mini				= Request.Val_Mini
+      Caracteristique.Val_Maxi				= Request.Val_Maxi
+      Caracteristique.b_Mini					= Request.b_Mini
+      Caracteristique.b_Maxi					= Request.b_Maxi
+      Caracteristique.Calcul					= Request.Calcul
+      Caracteristique.Description				= Request.Description
+      
+      si pas HAjoute(Caracteristique, hVérifieDoublon) ALORS
+      	si HErreurDoublon() = vrai ALORS
+      		renvoyer Err(409, "Ce tag existe déjà")
+      	FIN
+      	renvoyer Err(502, "Le serveur n'est pas disponible")
+      FIN
+      
+      rep			= Caracteristique.EnregistrementVersJSON()
+      rep.Code	= 200
+      
+      renvoyer rep
+     type : 458752
+   -
+     name : pglb_CaractUpdate
+     procedure_id : 1897502090277275466
+     type_code : 15
+     group : 1
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param nId (entier)  <indiquez ici le rôle de nId>
+      //! @param Request (JSON)  Rep (JSON)  <indiquez ici le rôle de Rep>
+      //!
+      //!
+      
+      procédure pglb_CaractUpdate(nId est un entier, Request est un JSON)
+      rep est un JSON
+      
+      si pas HLitRecherche(Caracteristique,IDCaracteristique, nId, hIdentique) ALORS
+      	renvoyer Err(404, "La caractéristique n'existe pas")
+      FIN
+      
+      Caracteristique.Name					= Request.Name
+      Caracteristique.Val_Mini				= Request.Val_Mini
+      Caracteristique.Val_Maxi				= Request.Val_Maxi
+      Caracteristique.b_Mini					= Request.b_Mini
+      Caracteristique.b_Maxi					= Request.b_Maxi
+      Caracteristique.Calcul					= Request.Calcul
+      Caracteristique.Description				= Request.Description
+      
+      si pas HModifie(Caracteristique) ALORS
+      	renvoyer Err(502, "Le serveur n'est pas disponible")
+      FIN
+      
+      rep			= Caracteristique.EnregistrementVersJSON()
+      rep.Code	= 200
+      
+      renvoyer rep
+     type : 458752
+   -
+     name : pglb_CaractSuppr
+     procedure_id : 1897502137521992321
+     type_code : 15
+     group : 1
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param nId (entier)  <indiquez ici le rôle de nId>
+      //!
+      //!
+      
+      procédure pglb_CaractSuppr(nId est un entier)
+      rep est un JSON
+      
+      si pas HLitRecherche(Caracteristique,IDCaracteristique, nId, hIdentique) alors
+      	renvoyer Err(404, "La caractéristique n'existe pas")
+      fin
+      
+      si pas HSupprime(Caracteristique) ALORS
+      	renvoyer Err(502, "Le serveur n'est pas disponible")
+      FIN
+      
+      rep.Code = 200
+      renvoyer rep
+     type : 458752
+   -
+     name : Err
+     procedure_id : 1897511290197604775
+     type_code : 15
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param nCode (entier)  <indiquez ici le rôle de nCode>
+      //! @param sMess (chaîne ANSI)  <indiquez ici le rôle de sMess>
+      //!
+      //! @return (JSON)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure Err(nCode est un entier, sMess est une chaîne)
+      rep est un JSON
+      
+      rep.Code = nCode
+      rep.nMess = sMess
+      
+      renvoyer rep
      type : 458752
   procedure_templates : []
   property_templates : []

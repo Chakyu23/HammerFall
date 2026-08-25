@@ -3,7 +3,7 @@
 info :
  name : cUser
  major_version : 31
- minor_version : 4
+ minor_version : 5
  type : 4
  description : ""
  subtype : 0
@@ -78,10 +78,12 @@ class :
       :m_sUUID	= rep.User.ID
       :m_sLogin 	= sLogin
       :m_Token	= rep.User.Token
+      si pas EnumérationVérifieValeur(cUser::eRanks, rep.User.Rank) alors
+      	cMess.PushError("Veuillez contacter le support (Rang invalide)")
+      fin
+      :m_eRank	= EnumérationDepuisValeur(cUser::eRanks, rep.User.Rank)
       
-      si pas :priv_ReadRank(rep.User.Rank) ALORS Retour
-       
-      FEN_HammerFall._Menu..Etat = Actif
+      FEN_HammerFall.GR_MENU..Etat = Actif
       ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
      type : 458752
    -
@@ -96,7 +98,7 @@ class :
       procédure Disconnect()
       :priv_Raz()
       
-      FEN_HammerFall._Menu..Etat = Grisé
+      FEN_HammerFall.GR_MENU..Etat = Grisé
       ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Cnx)
      type : 458752
    -
@@ -111,6 +113,11 @@ class :
       procédure Register(sLogin est une chaîne, sMdp est une chaîne)
       rep est un JSON
       
+      si sLogin = "" _ou_ sMdp = "" alors
+      	cMess.PushError("Veuillez saisir un login et un mot de passe")
+      	retour
+      FIN
+      
       :priv_Raz()
       
       rep = pglb_RegisterBasic(sLogin, sMdp)
@@ -122,41 +129,13 @@ class :
       :m_sUUID	= rep.User.ID
       :m_sLogin 	= sLogin
       :m_Token	= rep.User.Token
-      
-      SI PAS :priv_ReadRank(rep.User.Rank) ALORS retour
-      
-      FEN_HammerFall._Menu..Etat	= Actif
-      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
-     type : 458752
-   -
-     name : priv_ReadRank
-     procedure_id : 1895900677320293952
-     type_code : 12
-     code : |1-
-      //!
-      //! @brief <indiquez ici ce que fait la procédure>
-      //!
-      //! @param bufRank (buffer)  buffRank (buffer)  sRank (buffer)  <indiquez ici le rôle de sRank>
-      //!
-      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
-      //!
-      //!
-      
-      procédure privée priv_ReadRank(LOCAL bufRank est un buffer)
-      bufKey			est un buffer
-      sRankResult		est une chaîne
-      
-      bufKey			= HashChaîne(HA_HMAC_SHA3_256, :m_sUUID + CC_SELMDP)
-      sRankResult		= deCrypteStandard(bufRank, bufKey, crypteAES256)
-      sRankResult		= ExtraitChaîne(sRankResult, 1, "|")
-      
-      si pâs EnumérationVérifieValeur(eRanks, sRankResult) ALORS
-      	cMess.PushError("Compte en erreur contacter le support")
-      	RENVOYER Faux
+      si pas EnumérationVérifieValeur(cUser::eRanks, rep.User.Rank) ALORS
+      	cMess.PushError("Veuillez contacter le support (Rang invalide)")
       FIN
-      :m_eRank = EnumérationDepuisValeur(eRanks, sRankResult)
+      :m_eRank	= EnumérationDepuisValeur(cUser::eRanks, rep.User.Rank)
       
-      renvoyer vrai
+      FEN_HammerFall.GR_MENU..Etat	= Actif
+      ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
      type : 458752
    -
      name : priv_Raz

@@ -3,7 +3,7 @@
 info :
  name : cCaracteristique
  major_version : 31
- minor_version : 4
+ minor_version : 5
  type : 4
  description : ""
  subtype : 0
@@ -17,6 +17,7 @@ class :
      code : |1+
       cCaracteristique est une Classe
       PRIVE
+      	m_nID			est un entier
       	m_sTag			est une chaîne
       	m_sName			est une chaîne
       	m_sDesc			est une chaîne
@@ -25,10 +26,15 @@ class :
       	m_bMin			est un booléen
       
       	m_nMax			est un entier
-      	m_bMac			est un booléen
+      	m_bMax			est un booléen
       
       	m_sCalc			est une chaîne
       	m_bCalc			est un booléen
+      
+      	m_nSelect		est un entier
+      
+      privé global
+      	m_LstCaract		est un tableau de cCaracteristique
       fin
      type : 131072
   procedures :
@@ -48,6 +54,373 @@ class :
       procédure Destructeur()
       
      type : 655360
+   -
+     name : CaractGetAll
+     procedure_id : 1897504714530102043
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //!
+      procédure global CaractGetAll()
+      rep est un JSON
+      nInd est un entier
+      
+      rep = pglb_CaractGetAll()
+      si rep.Code <> 200 alors
+      	cMess.PushError(rep.Mess)
+      	renvoyer Faux
+      fin
+      
+      quand exception dans
+      	pour tout _Caract de rep.data
+      		nInd = TableauAjoute(::m_LstCaract)
+      		::m_LstCaract[nInd].ChargeCaract(_Caract)
+      	fin
+      faire
+      	cMess.PushError("Structure de caractéristique invalide")
+      	renvoyer faux
+      fin
+      
+      renvoyer vrai
+     type : 458752
+   -
+     name : ChargeCaract
+     procedure_id : 1897505264292859941
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param rep (JSON)  <indiquez ici le rôle de rep>
+      //!
+      //!
+      
+      procédure ChargeCaract(rep est un JSON)
+      
+      :m_nID 		= rep.IDCaracteristique
+      :m_sTag 	= rep.Tag
+      :m_sName 	= rep.Name
+      :m_nMin 	= rep.Val_Mini
+      :m_nMax		= rep.Val_Maxi
+      :m_bMin 	= rep.b_Mini
+      :m_nMax	 	= rep.b_Maxi
+      :m_sCalc	= rep.Calcul
+      :m_sDesc 	= rep.Description
+     type : 458752
+   -
+     name : CaractSet
+     procedure_id : 1897507158395767064
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure CaractSet()
+      req		est un JSon
+      rep		est un json
+      nInd	est un entier
+      
+      req.Tag						= :m_sTag
+      req.Name					= :m_sName
+      req.Val_Mini				= :m_nMin
+      req.Val_Maxi				= :m_nMax
+      req.b_Mini					= :m_bMin
+      req.b_Maxi					= :m_nMax
+      req.Calcul					= :m_sCalc
+      req.Description				= :m_sDesc
+      
+      rep							= pglb_CaractSet(req)
+      si rep.Code <> 200 alors
+      	cMess.PushError(rep.Mess)
+      	renvoyer Faux
+      fin
+      
+      nInd = TableauAjoute(::m_lstCaract, Objet)
+      ::m_LstCaract[nInd].ChargeCaract(rep)
+      
+      renvoyer Vrai
+     type : 458752
+   -
+     name : CaractUpdate
+     procedure_id : 1897507274359911181
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure CaractUpdate()
+      nInd	est un entier
+      req		est un JSON
+      rep		est un Json
+      
+      req.Name					= :m_sName
+      req.Val_Mini				= :m_nMin
+      req.Val_Maxi				= :m_nMax
+      req.b_Mini					= :m_bMin
+      req.b_Maxi					= :m_nMax
+      req.Calcul					= :m_sCalc
+      req.Description				= :m_sDesc
+      
+      rep							= pglb_CaractUpdate(:m_nID, req)
+      si rep.Code <> 200 alors
+      	cMess.PushError(rep.Mess)
+      	renvoyer Faux
+      fin
+      
+      nInd = TableauCherche(::m_LstCaract, tcLinéaire, "m_nID", :m_nID)
+      si nInd <> -1 alors
+      	::m_LstCaract[nInd].ChargeCaract(rep)
+      fin
+      
+      renvoyer Vrai
+     type : 458752
+   -
+     name : CaractSuppr
+     procedure_id : 1897509018134668431
+     type_code : 12
+     code : |1-
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param nIdSuppr (entier)  nId (entier)  <indiquez ici le rôle de nId>
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure Global CaractSuppr(nIdSuppr est un entier)
+      rep		est un json
+      nInd	est une chaîne
+      
+      rep = pglb_CaractSuppr(nIdSuppr)
+      si rep.Code <> 200 alors
+      	cMess.PushError(rep.Mess)
+      	renvoyer Faux
+      fin
+      
+      nInd = TableauCherche(::m_LstCaract, tcLinéaire, "m_nID", nIdSuppr)
+      si nInd <> -1 alors
+      	TableauSupprime(::m_LstCaract, nInd)
+      fin
+      
+      renvoyer vrai
+     type : 458752
+   -
+     name : CaractSelect
+     procedure_id : 1897527821653258986
+     type_code : 12
+     code : |1+
+      //!
+      //! @brief <indiquez ici ce que fait la procédure>
+      //!
+      //! @param nIdSelect (entier)  <indiquez ici le rôle de nIdSelect>
+      //!
+      //! @return (booléen)  <indiquez ici les valeurs possibles ainsi que leur interprétation>
+      //!
+      //!
+      
+      procédure CaractSelect(nIdSelect est un entier)
+      nInd est un entier
+      
+      nInd = TableauCherche(::m_LstCaract, tcLinéaire, "m_nID", nIdSelect)
+      si nInd <> -1 alors
+      	renvoyer Faux
+      fin
+      
+      Objet = ::m_LstCaract[nInd]
+      
+      renvoyer Vrai
+      
+     type : 458752
+  properties :
+   -
+     name : LstCaract
+     identifier : 0x1a554da607df77e7
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique globale LstCaract() : tableau de cCaracteristique
+         
+         renvoyer ::m_LstCaract
+        type : 1966080
+     template_refs : []
+   -
+     name : sName
+     identifier : 0x1a5556ca0c172c0a
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique sName() : chaîne ANSI
+         
+         renvoyer :m_sName
+        type : 1966080
+      -
+        code : |1-
+         procédure publique sName(Valeur est chaîne ANSI)
+         
+         :m_sName=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : nMax
+     identifier : 0x1a5556d00c1843a9
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique nMax() : entier
+         
+         renvoyer :m_nMax
+        type : 1966080
+      -
+        code : |1-
+         procédure publique nMax(Valeur est entier)
+         
+         :m_nMax=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : bMax
+     identifier : 0x1a5556d80c1963c4
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique bMax() : booléen
+         
+         renvoyer :m_bMax
+        type : 1966080
+      -
+        code : |1-
+         procédure publique bMax(Valeur est booléen)
+         
+         :m_bMax=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : bMin
+     identifier : 0x1a5557090c21234b
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique bMin() : booléen
+         
+         renvoyer :m_bMin
+        type : 1966080
+      -
+        code : |1-
+         procédure publique bMin(Valeur est booléen)
+         
+         :m_bMin=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : nMin
+     identifier : 0x1a5557100c223f9d
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique nMin() : entier
+         
+         renvoyer :m_nMin
+        type : 1966080
+      -
+        code : |1-
+         procédure publique nMin(Valeur est entier)
+         
+         :m_nMin=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : sCalc
+     identifier : 0x1a5557160c23547d
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique sCalc() : chaîne ANSI
+         
+         renvoyer :m_sCalc
+        type : 1966080
+      -
+        code : |1-
+         procédure publique sCalc(Valeur est chaîne ANSI)
+         
+         si Valeur = "" ALORS
+         	:m_bCalc = Faux
+         sinon
+         	:m_bCalc = Vrai
+         FIN
+         :m_sCalc=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : sDesc
+     identifier : 0x1a55571c0c246d73
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique sDesc() : chaîne ANSI
+         
+         renvoyer :m_sDesc
+        type : 1966080
+      -
+        code : |1-
+         procédure publique sDesc(Valeur est chaîne ANSI)
+         
+         :m_sDesc=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : sTag
+     identifier : 0x1a5557220c2582c0
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique sTag() : chaîne ANSI
+         
+         renvoyer :m_sTag
+        type : 1966080
+      -
+        code : |1-
+         procédure publique sTag(Valeur est chaîne ANSI)
+         
+         si :m_nID <> 0 alors
+         	cMess.PushError("Impossible de modifier le tag après la création de la statistique")
+         	retour
+         FIN
+         
+         :m_sTag=Valeur
+        type : 2031616
+     template_refs : []
+   -
+     name : nID
+     identifier : 0x1a555e9810bbaafc
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         procédure publique nID() : entier
+         
+         renvoyer :m_nID
+        type : 1966080
+     template_refs : []
   procedure_templates : []
   property_templates : []
  code_parameters :

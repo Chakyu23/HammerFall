@@ -3,7 +3,7 @@
 info :
  name : cMenuPrincipal
  major_version : 31
- minor_version : 4
+ minor_version : 5
  type : 4
  description : ""
  subtype : 0
@@ -65,13 +65,15 @@ class :
       selon eOption
       	// Global
       	CAS eGlobal
+      		ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Global)
       
       	// SousMenu
       	CAS eCaracteristique
-      		ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Caracteristiques) 
-      
+      		ChangeFenêtreSource(FEN_HammerFall.CFI_Main, FI_Caracteristiques)
       
       FIN
+      
+      :m_eOptionActive = eOption
       
       renvoyer vrai
       
